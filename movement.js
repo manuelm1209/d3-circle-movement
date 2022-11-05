@@ -12,6 +12,7 @@ setInterval(() => {
     const data = d3.range(20).map((d) => ({
         x: d * 70 + 40,
         y: (height / 2) + Math.sin(d * 0.5 + t) * 180,
+        r: 20 + Math.sin(d * 0.5 + t) * -10
     }));
     
     // // First way with DUPLICATED LOGIC.
@@ -38,7 +39,7 @@ setInterval(() => {
 
     // Third way using .join
     const circles = svg.selectAll('circle').data(data).join('circle')
-        .attr('r', 30)
+        .attr('r', (d) => d.r)
         .attr('cx', (d) => d.x)
         .attr('cy', (d) => d.y);
 
